@@ -1,6 +1,6 @@
 package com.marie.notification.model;
 
-import com.marie.notification.util.AddressType;
+import com.marie.notification.model.enums.AddressType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,19 +23,13 @@ public class Address {
  @GeneratedValue (strategy = GenerationType.IDENTITY)
  private Long id;
  private String value;     // actual contact like email, phone, or address
- private Boolean isPrimary; // tu orive miutita mag shemtxvevashi
- private Boolean isActive; // araaqtiuri misamartebi unda wavshalot
+ private Boolean isPrimary; //if a few addresses were added
+ private Boolean isActive;
 
- //will be handled by db
- /*@CreationTimestamp
+
+ @CreationTimestamp
  private LocalDateTime createdAt;
  @UpdateTimestamp
- private LocalDateTime updatedAt;*/
-
- @Column(name = "created_at", updatable = false, insertable = false)
- private LocalDateTime createdAt;
-
- @Column(name = "updated_at", insertable = false)
  private LocalDateTime updatedAt;
 
 

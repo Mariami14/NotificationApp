@@ -1,20 +1,21 @@
 package com.marie.notification.model;
 
-import com.marie.notification.util.AddressType;
-import com.marie.notification.util.NotificationTrack;
-import com.marie.notification.util.NotificationTypes;
+import com.marie.notification.model.enums.AddressType;
+import com.marie.notification.model.enums.NotificationTracker;
+import com.marie.notification.model.enums.NotificationTypes;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "notificationStatus")
+@Table (name = "notificationTracker")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
 public class NotificationStatus {
 
@@ -22,10 +23,9 @@ public class NotificationStatus {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "created_at", updatable = false, insertable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
-
-    @Column(name = "updated_at", insertable = false)
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
 
@@ -33,12 +33,12 @@ public class NotificationStatus {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-    @Enumerated
+    @Enumerated (EnumType.STRING)
     private AddressType addressType;
 
-    @Enumerated
-    private NotificationTrack notificationTrack;
+    @Enumerated (EnumType.STRING)
+    private NotificationTracker tracker;
 
-    @Enumerated
+    @Enumerated (EnumType.STRING)
     private NotificationTypes notificationTypes;
 }

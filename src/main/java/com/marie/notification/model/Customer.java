@@ -23,21 +23,12 @@ public class Customer {
     private Long id;
     private String firstName;
     private String lastName;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String email;
     private String postal;
-/*    @CreationTimestamp
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
-    private LocalDateTime updatedAt;*/
-
-    //todo ეს დროის ფილტრები მისახედია, ზემოთ დაკომენტარებულია
-    //todo ისე უნდა გაკეთდეს რომ დრო ჩაიწეროს, index ფაილშიც შესატანია კორექცია
-
-    @Column(name = "created_at", updatable = false, insertable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at", insertable = false)
     private LocalDateTime updatedAt;
 
 

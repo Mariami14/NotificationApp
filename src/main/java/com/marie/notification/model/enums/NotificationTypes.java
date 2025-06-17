@@ -1,4 +1,4 @@
-package com.marie.notification.util;
+package com.marie.notification.model.enums;
 
 public enum NotificationTypes {
     PROMOTIONAL,

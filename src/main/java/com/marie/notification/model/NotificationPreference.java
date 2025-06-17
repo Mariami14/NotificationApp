@@ -1,7 +1,7 @@
 package com.marie.notification.model;
 
 
-import com.marie.notification.util.NotificationTypes;
+import com.marie.notification.model.enums.NotificationTypes;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +23,6 @@ public class NotificationPreference {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
-    @Enumerated
+    @Enumerated (EnumType.STRING)
     private NotificationTypes notificationTypes;
 }
