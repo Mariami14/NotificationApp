@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -21,7 +22,7 @@ import java.util.Collections;
 public class SysUser implements UserDetails {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -30,24 +31,13 @@ public class SysUser implements UserDetails {
     private String password;
 
 
-
-
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Roles roles;
-
-    public SysUser(String userName, String password) {
-        this.username = userName;
-        this.password = password;
-    }
-
-
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(Roles.ADMIN.name());
-        return Collections.singletonList(authority);
+        return List.of(new SimpleGrantedAuthority(this.roles.name()));
     }
 
     @Override

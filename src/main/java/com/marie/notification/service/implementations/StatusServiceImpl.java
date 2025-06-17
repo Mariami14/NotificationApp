@@ -9,20 +9,19 @@ import com.marie.notification.service.StatusService;
 import com.marie.notification.model.enums.AddressType;
 import com.marie.notification.model.enums.NotificationTracker;
 import com.marie.notification.model.enums.NotificationTypes;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class StatusServiceImpl implements StatusService {
 
     private final CustomerRepository customerRepository;
     private final StatusRepository statusRepository;
-
-    public StatusServiceImpl(CustomerRepository customerRepository, StatusRepository statusRepository) {
-        this.customerRepository = customerRepository;
-        this.statusRepository = statusRepository;
-    }
 
     @Override
     public List<NotificationStatus> getStatusByCustomerId(Long customerId) {

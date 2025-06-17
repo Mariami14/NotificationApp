@@ -1,6 +1,7 @@
 package com.marie.notification.dto.request;
 
 
+import com.marie.notification.model.NotificationPreference;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -9,6 +10,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerRequest {
+
+    private Long id;
 
     @NotBlank(message = "Firstname is required")
     private String firstName;
@@ -22,4 +25,5 @@ public class CustomerRequest {
 
     private String phoneNumber;
     private String postal;
+
 }

@@ -1,5 +1,6 @@
 package com.marie.notification.service.implementations;
 
+import com.marie.notification.dto.request.CustomerRequest;
 import com.marie.notification.model.Customer;
 import com.marie.notification.repository.CustomerRepository;
 import com.marie.notification.service.CustomerService;
@@ -50,12 +51,32 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> search(String firstName, String lastName) {
-        return customerRepository.searchByName(firstName, lastName);
+        return customerRepository
+                .findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(
+                        firstName == null ? "" : firstName,
+                        lastName  == null ? "" : lastName);
     }
 
     @Override
     public Customer getById(Long id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Customer not found id=" + id));
+    }
+    @Override
+    public Customer updateOrCreate(CustomerRequest customerRequest) {
+
+        Customer customer = customerRequest.getId() != null
+                ? customerRepository.findById(customerRequest.getId()).orElse(new Customer())
+                : new Customer();
+
+        copyFields(customerRequest, customer);
+        return customerRepository.save(customer);
+    }
+    private void copyFields(CustomerRequest customerRequest, Customer customer) {
+        customer.setFirstName(customerRequest.getFirstName());
+        customer.setLastName(customerRequest.getLastName());
+        customer.setEmail(customerRequest.getEmail());
+        customer.setPhoneNumber(customerRequest.getPhoneNumber());
+        customer.setPostal(customerRequest.getPostal());
     }
 }

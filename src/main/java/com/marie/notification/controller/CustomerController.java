@@ -7,12 +7,15 @@ import com.marie.notification.service.CustomerService;
 import com.marie.notification.dto.request.CustomerRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/customer")
@@ -79,4 +82,29 @@ public class CustomerController {
         model.addAttribute("customer", customerRequest);
         return "customer-form";
     }
+    @GetMapping("/search")
+    @ResponseBody
+    public List<CustomerDTO> searchByName(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
+        return customerService.search(firstName, lastName)
+                .stream()
+                .map(customerDTOMapper)
+                .toList();
+    }
+
+    @PostMapping("/batch")
+    @ResponseBody
+    public ResponseEntity<List<CustomerDTO>> batch(@RequestBody List<CustomerRequest> batch) {
+
+        List<CustomerDTO> result = batch.stream()
+                .map(customerService::updateOrCreate) // CustomerRequest -> Customer
+                .map(customerDTOMapper::apply)        // Customer -> CustomerDTO
+                .toList();
+
+        return ResponseEntity.ok(result);
+    }
+
+
 }

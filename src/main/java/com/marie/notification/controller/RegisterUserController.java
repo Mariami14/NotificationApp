@@ -44,7 +44,7 @@ public class RegisterUserController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "redirect:/login";
         }
 
         SysUser sysUser = SysUser.builder()
