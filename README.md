@@ -64,7 +64,7 @@ src/main/resources/
 5. **Access the application**:
 
    * Visit: `http://localhost:8080`
-   * Default credentials (if configured): `user / user14`
+   
 
 ## Maven Dependencies
 
