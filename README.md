@@ -90,10 +90,7 @@ All dependencies are defined in `pom.xml`, including:
 * `/register` — Registration page
 * `/login` — Login page
 
-### 📡 REST API Endpoints
 
-* `POST /api/status` — Submit notification delivery status
-* `POST /api/registration` — Register a new system user
 
 ### Sample Request: Notification Status Submission
 
@@ -118,8 +115,6 @@ All dependencies are defined in `pom.xml`, including:
 * Addresses and Notification Types use enums `AddressType.java`,`NotificationTracker.java`  and `NotificationTypes.java`
 * Custom exception handling can be extended in `GlobalExceptionHandler.java`
 
----
 
- **Ready to Deploy** — You can now connect this microservice to external notification or CRM systems.
 
 
