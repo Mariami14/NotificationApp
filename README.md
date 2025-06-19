@@ -7,7 +7,7 @@ This project is a **Customer Notification Address Facade System**, a microservic
 ## Technologies Used
 
 * **Backend**: Java 17 with Spring Boot 3.5.0
-* **Frontend**: HTML, CSS, JavaScript
+* **Frontend**: HTML
 * **Templating Engine**: Thymeleaf
 * **Security**: Spring Security
 * **Database**: MySQL (with Hibernate JPA)
