@@ -29,7 +29,7 @@ src/main/java/com/marie/notification/
 └── NotificationApplication.java # Main application entry point
 
 src/main/resources/
-├── static/                     # Static CSS/JS files (optional)
+├── static/                     
 ├── templates/                  # Thymeleaf HTML templates
 │   ├── address/
 │   ├── customer/
